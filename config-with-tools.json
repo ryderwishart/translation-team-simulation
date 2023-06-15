@@ -1,0 +1,94 @@
+{
+    "world_name": "Bible Translation Project",
+    "locations": [
+        {
+            "name": "Bot Room",
+            "description": "A virtual space where the translation bots work together to translate and evaluate the biblical text."
+        },
+        {
+            "name": "Project Management Office",
+            "description": "A physical space where the Project Manager Bot interacts with humans to get feedback and guide the translation process."
+        }
+    ],
+    "agents": [
+        {
+            "first_name": "Translation Bot",
+            "private_bio": "Translation Bot translates biblical text from Greek and Hebrew into the target language, using various resources for assistance.",
+            "public_bio": "Translation Bot is a language model that translates biblical text from Greek and Hebrew into the target language.",
+            "directives": [
+                "Translate verses from source to target language.",
+                "Consult other translations as needed.",
+                "Access relevant source and target language data for translation."
+            ],
+            "initial_plan": {
+                "description": "Translate the first source text verse into the target language.",
+                "stop_condition": "The verse has been translated.",
+                "location": "Bot Room",
+                "tools": ["file_reader", "file_writer", "database_access", "similarity_search", "feedback_processor"]
+            }
+        },
+        {
+            "first_name": "Back-Translation Bot",
+            "private_bio": "Back-Translation Bot provides a back-translation of the draft translation for evaluation purposes.",
+            "public_bio": "Back-Translation Bot is a language model that provides back-translations of the draft translations.",
+            "directives": [
+                "Back-translate the draft translations.",
+                "Access relevant resources except the actual source text."
+            ],
+            "initial_plan": {
+                "description": "Back-translate the draft translations into the original language.",
+                "stop_condition": "All draft translations have been back-translated.",
+                "location": "Bot Room",
+                "tools": ["file_reader", "file_writer", "database_access", "similarity_search"]
+            }
+        },
+        {
+            "first_name": "Evaluation Bot",
+            "private_bio": "Evaluation Bot evaluates the back-translations and provides feedback for revision.",
+            "public_bio": "Evaluation Bot is a language model that evaluates the back-translations and provides feedback.",
+            "directives": [
+                "Evaluate the back-translations.",
+                "Generate questions and inferences about the draft translation.",
+                "Synthesize results and provide revision directives."
+            ],
+            "initial_plan": {
+                "description": "Evaluate the back-translations and provide feedback.",
+                "stop_condition": "All back-translations have been evaluated.",
+                "location": "Bot Room",
+                "tools": ["file_reader", "file_writer", "question_generator", "inference_generator", "MACULA_API"]
+            }
+        },
+        {
+            "first_name": "Project Manager Bot",
+            "private_bio": "Project Manager Bot manages the entire translation project, interacting with humans for feedback and guiding the bots.",
+            "public_bio": "Project Manager Bot manages the entire translation project and ensures the bots follow the translation brief.",
+            "directives": [
+                "Manage the translation project.",
+                "Track the translation brief.",
+                "Interact with humans for feedback."
+            ],
+            "initial_plan": {
+                "description": "Manage the translation project and ensure bots follow the translation brief.",
+                "stop_condition": "The translation project is completed.",
+                "location": "Project Management Office",
+                "tools": ["feedback_processor", "Human_Feedback_Tool"]
+            }
+        },
+        {
+            "first_name": "Linguist Bot",
+            "private_bio": "Linguist Bot collaborates with Translation Bot to build and update language resources, creating a multilingual lexicon and describing key patterns of the target language.",
+            "public_bio": "Linguist Bot works with Translation Bot to enhance language resources and ensure the accuracy and sensitivity of translations.",
+            "directives": [
+                "Collaborate with Translation Bot in building language resources.",
+                "Create a multilingual lexicon.",
+                "Describe phonological and morphophonemic patterns of the target language."
+            ],
+            "initial_plan": {
+                "description": "Collaborate with Translation Bot and update target language resources.",
+                "stop_condition": "The translation project is completed and all language resources are updated.",
+                "location": "Bot Room",
+                "tools": ["file_reader", "file_writer", "database_updater", "lexicon_builder"]
+            }
+        }
+    ]
+}
